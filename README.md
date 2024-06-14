@@ -1,2 +1,3 @@
-Personal website generated with pandoc.
-Styled with tufte-css: https://edwardtufte.github.io/tufte-css/
+Source and output for my personal weblog. 
+Uses the Tufte Pandoc CSS project starter: https://github.com/jez/tufte-pandoc-css
+
