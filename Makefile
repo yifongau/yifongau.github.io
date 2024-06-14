@@ -1,11 +1,11 @@
 # What to compile by default?
-SOURCES := docs/index.md 
+SOURCES := index.md 
 TARGETS := $(patsubst %.md,%.html,$(SOURCES))
 
-STYLES := tufte.css \
-	pandoc.css \
-	pandoc-solarized.css \
-	tufte-extra.css
+STYLES := style/tufte.css \
+				style/pandoc.css \
+				style/pandoc-solarized.css \
+				style/tufte-extra.css
 
 .PHONY: all
 all: $(TARGETS)
@@ -21,7 +21,7 @@ all: $(TARGETS)
 		--filter pandoc-sidenote \
 		--to html5+smart \
 		--template=tufte \
-		$(foreach style,$(STYLES),--css $(notdir $(style))) \
+		$(foreach style,$(STYLES),--css $(style)) \
 		--output $@ \
 		$<
 
@@ -29,10 +29,3 @@ all: $(TARGETS)
 clean:
 	rm $(TARGETS)
 
-# The default tufte.css file expects all the assets to be in the same folder.
-# In real life, instead of duplicating the files you'd want to put them in a
-# shared "css/" folder or something, and adjust the `--css` flags to the pandoc
-# command to give the correct paths to each CSS file.
-.PHONY: docs
-docs:
-	cp -r $(STYLES) et-book/ docs/
